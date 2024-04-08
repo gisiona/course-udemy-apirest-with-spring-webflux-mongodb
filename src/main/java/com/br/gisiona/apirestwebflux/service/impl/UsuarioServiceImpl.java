@@ -17,11 +17,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Mono<UsuarioEntity> criarUsuario(UsuarioRequest request) {
-        try {
-            return usuarioRepository.criarUsuario(usuarioMapper.toUsuarioEntity(request));
-        } catch (Exception exception) {
-            log.error("Erro ao salvar usuário. Mensagem: {}", exception.getMessage());
-            throw exception;
-        }
+        return usuarioRepository.criarUsuario(usuarioMapper.toUsuarioEntity(request));
     }
 }

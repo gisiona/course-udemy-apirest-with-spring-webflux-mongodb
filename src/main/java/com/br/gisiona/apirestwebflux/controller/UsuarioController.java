@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 @RestController
-@RequestMapping("/gisiona.api")
+@RequestMapping("/gisiona.api/usuarios")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;

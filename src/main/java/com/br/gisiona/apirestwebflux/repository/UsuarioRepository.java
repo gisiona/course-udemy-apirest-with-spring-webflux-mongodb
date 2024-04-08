@@ -1,8 +1,6 @@
 package com.br.gisiona.apirestwebflux.repository;
 
 import com.br.gisiona.apirestwebflux.entity.UsuarioEntity;
-import com.mongodb.DuplicateKeyException;
-import com.mongodb.MongoException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -16,12 +14,9 @@ public class UsuarioRepository {
     public Mono<UsuarioEntity> criarUsuario(UsuarioEntity usuarioEntity){
         try {
             return mongoTemplate.save(usuarioEntity);
-        } catch (DuplicateKeyException duplicateKeyException) {
-            log.error("Erro ao salvar usuário duplicado. Mensagem: {}", duplicateKeyException.getMessage());
-            throw duplicateKeyException;
-        } catch (MongoException mongoException) {
-            log.error("Erro ao salvar usuário. Mensagem: {}", mongoException.getMessage());
-            throw mongoException;
+        } catch (Exception exception) {
+            log.error("Erro ao salvar usuário duplicado. Mensagem: {}", exception.getMessage());
+            throw exception;
         }
     }
 }
